@@ -406,7 +406,8 @@ func TestDetermineIsoUrl(t *testing.T) {
 		{"CentOs", constants.DefaultCentOsIsoUrl},
 		{"http://my.custom.url/myiso.iso", "http://my.custom.url/myiso.iso"},
 		{"https://my.custom.url/myiso.iso", "https://my.custom.url/myiso.iso"},
-		{"file://somewhere/on/disk", "file://somewhere/on/disk"},
+		{"https://my.custom.url/Myiso.iso", "https://my.custom.url/Myiso.iso"},
+		{"file://somewhere/On/disk", "file://somewhere/On/disk"},
 	}
 
 	for _, isoTest := range isoTests {
