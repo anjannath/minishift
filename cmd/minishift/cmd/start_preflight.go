@@ -448,21 +448,23 @@ func checkIsoUrl() bool {
 	}
 
 	if runtime.GOOS == "windows" {
-		match, _ := regexp.MatchString("^file://[a-zA-Z]:/.+", isoUrl)
+		match, _ := regexp.MatchString("^file://[a-zA-Z]:/.+|^http://[a-zA-Z]:/.+|^https://[a-zA-Z]:/.+", isoUrl)
 		if !match {
 			return false
 		}
 	} else {
-		match, _ := regexp.MatchString("^file:///.+", isoUrl)
+		match, _ := regexp.MatchString("^file:///.+|^http://.+|^https://.+", isoUrl)
 		if !match {
 			return false
 		}
 	}
-
-	fmt.Printf("\n   Checking if %s exists ... ", strings.TrimPrefix(isoUrl, "file://"))
-	_, err := os.Stat(strings.TrimPrefix(isoUrl, "file://"))
-	if err != nil {
-		return false
+	
+	if strings.HasPrefix(isoUrl, "file://") {
+		fmt.Printf("\n   Checking if %s exists ... ", strings.TrimPrefix(isoUrl, "file://"))
+		_, err := os.Stat(strings.TrimPrefix(isoUrl, "file://"))
+		if err != nil {
+			return false
+		}
 	}
 
 	return true
