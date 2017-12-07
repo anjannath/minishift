@@ -279,7 +279,7 @@ The following example shows how to install an add-on.
 .Example: Installing an add-on
 
 ----
-$ minishift addons install <path_to_addon_directory>
+$ minishift addons install anjan
 ----
 
 [[enabling-disabling-addons]]
