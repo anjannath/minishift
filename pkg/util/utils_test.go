@@ -17,6 +17,9 @@ limitations under the License.
 package util
 
 import (
+	"os"
+	"path/filepath"
+	"runtime"
 	"testing"
 	"time"
 
@@ -133,6 +136,35 @@ func TestFriendlyDuration(t *testing.T) {
 		expected, _ := time.ParseDuration(tt.want)
 		if got != expected {
 			t.Errorf("Expected %v but got %v", got, expected)
+		}
+	}
+}
+
+func TestCommandExecutesSuccessfully(t *testing.T) {
+	currentDir, err := os.Getwd()
+	if err != nil {
+		t.Fatalf("Unexpected error: %v", err)
+	}
+	dummybinary := filepath.Join(currentDir, "..", "..", "test", "testdata", "dummybinary")
+
+	if runtime.GOOS == "windows" {
+		dummybinary = filepath.Join(currentDir, "..", "..", "test", "testdata", "dummybinary_windows.exe")
+	}
+	if runtime.GOOS == "darwin" {
+		dummybinary = filepath.Join(currentDir, "..", "..", "test", "testdata", "dummybinary_darwin")
+	}
+
+	testData := []struct {
+		command string
+		exists  bool
+	}{
+		{"blahh", false},
+		{dummybinary, true},
+	}
+	for _, v := range testData {
+		got := CommandExecutesSuccessfully(v.command)
+		if got != v.exists {
+			t.Errorf("Expected %v Got %v", v.exists, got)
 		}
 	}
 }

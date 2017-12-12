@@ -109,6 +109,14 @@ func preflightChecksBeforeStartingHost() {
 			"Checking if user is a member of the Hyper-V Administrators group",
 			false, configCmd.WarnCheckHyperVDriver.Name,
 			driverErrorMessage)
+	case "virtualbox":
+		preflightCheckSucceedsOrFails(
+			configCmd.SkipCheckVBoxInstalled.Name,
+			checkVBoxInstalled,
+			"Checking if VirtualBox is installed",
+			false, configCmd.WarnCheckVBoxInstalled.Name,
+			driverErrorMessage)
+
 	}
 
 	preflightCheckSucceedsOrFails(

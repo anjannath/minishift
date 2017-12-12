@@ -19,6 +19,8 @@ package util
 import (
 	"fmt"
 	"io"
+	"os"
+	"os/exec"
 	"strings"
 	"time"
 )
@@ -165,4 +167,27 @@ func FriendlyDuration(d time.Duration) time.Duration {
 
 	d2 := (d / time.Nanosecond) * (time.Nanosecond)
 	return d2
+}
+
+// CommandExecutesSuccessfully returns true if the command executed based on the exit code
+func CommandExecutesSuccessfully(cmd string, args ...string) bool {
+	var runner Runner = &RealRunner{}
+	var stdOut, stdErr io.Writer
+	// check in the path if cmd	is present
+	path, err := exec.LookPath(cmd)
+	if err != nil {
+		return false
+	}
+	fi, _ := os.Stat(path)
+	if fi.Mode()&os.ModeSymlink != 0 {
+		path, err = os.Readlink(path)
+		if err != nil {
+			return false
+		}
+	}
+	exitCode := runner.Run(stdOut, stdErr, path, args...)
+	if exitCode == 0 {
+		return true
+	}
+	return false
 }
