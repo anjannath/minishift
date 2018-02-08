@@ -106,6 +106,12 @@ func preflightChecksBeforeStartingHost() {
 			driverErrorMessage)
 		preflightCheckSucceedsOrFails(
 			configCmd.SkipCheckHyperVDriver.Name,
+			checkUserInDomainAndWarnAdminCheck,
+			"Checking if user is in a Domain",
+			configCmd.WarnCheckHyperVDriver.Name,
+			driverErrorMessage)
+		preflightCheckSucceedsOrFails(
+			configCmd.SkipCheckHyperVDriver.Name,
 			checkHypervDriverUser,
 			"Checking if user is a member of the Hyper-V Administrators group",
 			configCmd.WarnCheckHyperVDriver.Name,
@@ -363,6 +369,18 @@ func checkHypervDriverInstalled() bool {
 	stdOut, _ := posh.Execute(checkIfHyperVInstalled)
 	if !strings.Contains(stdOut, "Hyper-V") {
 		return false
+	}
+	return true
+}
+
+// checkUserInDomainAndWarnAdminCheck returns true and sets the following
+// check to WARN if user is part of windows domain
+func checkUserInDomainAndWarnAdminCheck() bool {
+	posh := powershell.New()
+	checkIfInDomain := `@(Get-WMIObject Win32_ComputerSystem).PartOfDomain`
+	stdOut, _ := posh.Execute(checkIfInDomain)
+	if strings.Contains(stdOut, "True") {
+		viper.Set("warn-check-hyperv-driver", true)
 	}
 	return true
 }
