@@ -208,7 +208,7 @@ As root, open the *_/Library/Preferences/SystemConfiguration/preferences.plist_*
         <key>Type</key>
         <string>Ethernet</string>
         <key>UserDefinedName</key>
-        <string>MiniTap</string>		<!--4-->
+        <string>MiniTap</string>		  <!--4-->
     </dict>
     <key>Proxies</key>
     <dict>
@@ -286,7 +286,7 @@ As root, append the following XML to its dictionary:
             <key>__LINK__</key>
             <string>/NetworkServices/8655D244-C6E7-4CC0-BF06-BB18F9C3BB85</string>
         </dict>
-        <key>D16F22CE-6DDE-4E63-837C-E16538EA5CCB</key>				  <!--1-->
+        <key>D16F22CE-6DDE-4E63-837C-E16538EA5CCB</key>			<!--1-->
         <dict>
             <key>__LINK__</key>
             <string>/NetworkServices/D16F22CE-6DDE-4E63-837C-E16538EA5CCB</string><!--2-->
@@ -302,9 +302,9 @@ This service will be disconnected.
 To turn it on, issue the following commands:
 
 ----
-$ exec 4<>/dev/tap0			<!--1-->
-$ ifconfig tap0 10.10.90.1 255.255.0.0  <!--1--> <!--2-->
-$ ifconfig tap0 up			<!--1-->
+$ exec 4<>/dev/tap0			// <1>
+$ ifconfig tap0 10.10.90.1 255.255.0.0  // <1> <2>
+$ ifconfig tap0 up			// <1>
 ----
 
 <1> Replace it with the `/dev/tap` device used by *MiniTap* Service.
