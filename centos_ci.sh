@@ -50,7 +50,7 @@ function install_core_deps() {
                  zip \
                  git \
                  curl \
-                 jq
+                 jq 
 
   echo 'CICO: Core dependencies installed'
 }
