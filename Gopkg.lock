@@ -43,6 +43,11 @@
   version = "v0.6.8"
 
 [[projects]]
+  name = "github.com/anjannath/systray"
+  packages = ["."]
+  revision = "b8e3d683add8d7b92e3d709accce3204439f296c"
+
+[[projects]]
   name = "github.com/asaskevich/govalidator"
   packages = ["."]
   revision = "7b3beb6df3c42abd3509abfc3bcacc0fbfb7c877"
@@ -267,7 +272,8 @@
 [[projects]]
   name = "github.com/elazarl/goproxy"
   packages = ["."]
-  revision = "aacba83f36a55ac31cbb71c06547a328c0cd1604"
+  revision = "93c365f5468fdbc21f2d55a7e39cc4bced996971"
+  source = "github.com/gbraad/goproxy"
 
 [[projects]]
   name = "github.com/fsnotify/fsnotify"
@@ -628,13 +634,14 @@
   revision = "442624c9ec9243441e83b374a9e22ac549b5c51d"
 
 [[projects]]
+  branch = "master"
   name = "golang.org/x/sys"
   packages = [
     "unix",
     "windows",
     "windows/registry"
   ]
-  revision = "43e60d72a8e2bd92ee98319ba9a384a0e9837c08"
+  revision = "d0be0721c37eeb5299f245a996a483160fc36940"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -691,6 +698,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "e0166cc66294639132751779d3945dbe47efdf4efcb2d04c6756b0e105a5b908"
+  inputs-digest = "56411aee5d1e0637919ed48b7f0381bc510568031a185393442bfd8dfb84a530"
   solver-name = "gps-cdcl"
   solver-version = 1
