@@ -45,10 +45,6 @@ ignored = ["github.com/Sirupsen/logrus"]
   source = "github.com/machine-drivers/machine"
 
 [[constraint]]
-  name = "github.com/elazarl/goproxy"
-  revision = "aacba83f36a55ac31cbb71c06547a328c0cd1604"
-
-[[constraint]]
   name = "github.com/gbraad/go-hvkvp"
   version = "=0.3.0"
 
@@ -162,7 +158,7 @@ ignored = ["github.com/Sirupsen/logrus"]
 
 [[constraint]]
   name = "golang.org/x/sys"
-  revision = "43e60d72a8e2bd92ee98319ba9a384a0e9837c08"
+  branch = "master"
 
 [[constraint]]
   name = "github.com/opencontainers/go-digest"
@@ -185,3 +181,6 @@ ignored = ["github.com/Sirupsen/logrus"]
   revision = "93c365f5468fdbc21f2d55a7e39cc4bced996971"
   source = "github.com/gbraad/goproxy"
 
+[[constraint]]
+  name = "github.com/anjannath/systray"
+  revision = "b8e3d683add8d7b92e3d709accce3204439f296c"

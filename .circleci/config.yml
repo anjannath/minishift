@@ -49,6 +49,9 @@ jobs:
     - run:
         name: Make prerelease
         command: cd $GOPATH/src/github.com/minishift/minishift && make prerelease
+    - run:
+        name: Make systemtray 
+        command: cd $GOPATH/src/github.com/minishift/minishift && make systemtray
     - run: 
         name: Validate Commits
         command: cd $GOPATH/src/github.com/minishift/minishift && make validate_commits
