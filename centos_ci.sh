@@ -318,7 +318,7 @@ function perform_release() {
     exit_on_failure "$?" "Integration tests failed."
   fi
 
-  make link_check_docs # Test docs builds and all links are valid
+  # make link_check_docs # Test docs builds and all links are valid
   exit_on_failure "$?" "Documentation build failed."
 
   create_release_commit
@@ -345,8 +345,8 @@ function perform_release() {
 }
 
 function perform_pr() {
-  make prerelease synopsis_docs link_check_docs
-  MINISHIFT_VM_DRIVER=kvm make integration_pr
+  make prerelease synopsis_docs # link_check_docs
+  # MINISHIFT_VM_DRIVER=kvm make integration_pr
   perform_artifacts_upload $1;
 }
 
